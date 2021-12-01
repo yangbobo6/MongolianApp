@@ -7,6 +7,7 @@ import com.qiniu.storage.*;
 import com.qiniu.storage.model.DefaultPutRet;
 import com.qiniu.storage.model.FileInfo;
 import com.qiniu.util.Auth;
+import com.school.mongolian.dto.QiNiuDto;
 import com.school.mongolian.result.Result;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
+//r3bne66hw.hb-bkt.clouddn.com
 //服务器直传
 @RestController
 @RequestMapping("/qiniu")
@@ -33,6 +35,7 @@ public class QiniuController {
     Auth auth = Auth.create(accessKey,secretKey);
     String upToken = auth.uploadToken(bucket);
 
+    //上传文件
     @RequestMapping("/upload")
     public Result<String> uploadFile(){
 
@@ -69,15 +72,11 @@ public class QiniuController {
         return Result.success("get success");
     }
 
-    String fileName = "20211129151908.png";
-
-    @RequestMapping("/downResource")
-    public Result<String> downSources() throws UnsupportedEncodingException {
-
-
-        return Result.success("");
+    @RequestMapping("/getPhoto")
+    public Result<QiNiuDto> getPhotos(){
+        QiNiuDto qiNiuDto = new QiNiuDto();
+        qiNiuDto.setQiniuUrl("http://r3bne66hw.hb-bkt.clouddn.com");
+        return Result.success(qiNiuDto);
     }
-
-
 
 }
