@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 //r3bne66hw.hb-bkt.clouddn.com
 //服务器直传
@@ -75,7 +77,12 @@ public class QiniuController {
     @RequestMapping("/getPhoto")
     public Result<QiNiuDto> getPhotos(){
         QiNiuDto qiNiuDto = new QiNiuDto();
-        qiNiuDto.setQiniuUrl("http://r3bne66hw.hb-bkt.clouddn.com");
+        qiNiuDto.setName("PhotoUrl");
+        List<String> url = new ArrayList<>();
+        url.add("http://r3bne66hw.hb-bkt.clouddn.com/20211129151908.png");
+        url.add("http://r3bne66hw.hb-bkt.clouddn.com/20211129151909.png");
+        url.add("http://r3bne66hw.hb-bkt.clouddn.com/20211129151930.png");
+        qiNiuDto.setQiNiuUrl(url);
         return Result.success(qiNiuDto);
     }
 
