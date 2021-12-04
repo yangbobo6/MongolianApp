@@ -1,5 +1,4 @@
 package com.school.mongolian.controller;
-
 import com.google.gson.Gson;
 import com.qiniu.common.QiniuException;
 import com.qiniu.http.Response;
@@ -59,6 +58,7 @@ public class QiniuController {
         return Result.success("success");
 
     }
+    //获取文件信息
     @RequestMapping("/getSources")
     public Result<String> getPhoto(){
         BucketManager bucketManager = new BucketManager(auth,cfg);
