@@ -13,16 +13,13 @@ public class AccessInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         response.setHeader("Access-Control-Allow-Credentials","true");
-        //response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
-        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+        //response.setHeader("Access-Control-Allow-Origin", "*");
+        //response.setHeader("allowedOriginPatterns", "*");
         response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept,token");
         response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
         response.setHeader("Access-Control-Expose-Headers", "Token");
 
-        if(request.getHeader("Sec-Fetch-Dest").equals("image")){
-            System.out.println(request.getHeader("Sec-Fetch-Dest"));
-            return true;
-        }
 
         log.info("验证token前");
         //验证token

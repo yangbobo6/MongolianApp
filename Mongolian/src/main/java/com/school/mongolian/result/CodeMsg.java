@@ -12,6 +12,10 @@ public class CodeMsg {
     public static CodeMsg UPDATE_APP = new CodeMsg(97,"软件待更新");
 
     //登录异常
+    public static CodeMsg PASSWORD_WRONG = new CodeMsg(40001,"密码错误");
+
+    //获取图片板块
+    public static final CodeMsg PHOTO_ERROR = new CodeMsg(30001,"服务器返回错误");
 
 
     public int getCode() {

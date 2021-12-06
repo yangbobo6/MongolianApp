@@ -6,8 +6,14 @@ import com.qiniu.storage.*;
 import com.qiniu.storage.model.DefaultPutRet;
 import com.qiniu.storage.model.FileInfo;
 import com.qiniu.util.Auth;
+import com.school.mongolian.dao.IntroduceDao;
 import com.school.mongolian.dto.QiNiuDto;
+import com.school.mongolian.po.Introduce;
+import com.school.mongolian.result.CodeMsg;
 import com.school.mongolian.result.Result;
+import io.swagger.models.auth.In;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -85,5 +91,26 @@ public class QiniuController {
         qiNiuDto.setQiNiuUrl(url);
         return Result.success(qiNiuDto);
     }
+
+    @Autowired
+    IntroduceDao introduceDao;
+    @RequestMapping("/getPhoto1/{id}")
+    public Result<Introduce> getPhoto(@PathVariable int id){
+        Introduce intro = introduceDao.getById(id);
+        if(intro!=null){
+            return Result.success(intro);
+        }
+        return Result.error(CodeMsg.PHOTO_ERROR);
+    }
+
+    @RequestMapping("/getAllIntroduce")
+    public Result<List<Introduce>> getAllIntroduce(){
+        List<Introduce> list = introduceDao.getAllIntroduce();
+        if(list.size()==0){
+            return Result.error(CodeMsg.PHOTO_ERROR);
+        }
+        return Result.success(list);
+    }
+
 
 }

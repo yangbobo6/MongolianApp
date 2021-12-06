@@ -13,7 +13,7 @@ import java.util.Map;
 public class JwtUtil {
 
     //过期时间  一天
-    private static final long EXPIRE_TIME = 24*60*60*1000;
+    public static final long EXPIRE_TIME = 24*60*60*1000;
     //token 密钥
     private static final String TOKEN_SECRET = "f26e587c28064d0e855e72c0a6a0e618";
 
@@ -74,7 +74,7 @@ public class JwtUtil {
     /**
      * 生成token
      */
-    public static String sign(String username,String userId,String status) {
+    public static String sign(String username,String userId) {
         try {
 //            过期时间
             Date date = new Date(System.currentTimeMillis() + EXPIRE_TIME);
@@ -89,7 +89,7 @@ public class JwtUtil {
                     .withHeader(header)
                     .withClaim("loginName", username)
                     .withClaim("userId",userId)
-                    .withClaim("status",status)
+                    //.withClaim("status",status)
                     .withExpiresAt(date)
                     .sign(algorithm);
         } catch (UnsupportedEncodingException e) {
