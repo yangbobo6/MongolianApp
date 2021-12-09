@@ -92,25 +92,4 @@ public class QiniuController {
         return Result.success(qiNiuDto);
     }
 
-    @Autowired
-    IntroduceDao introduceDao;
-    @RequestMapping("/getPhoto1/{id}")
-    public Result<Introduce> getPhoto(@PathVariable int id){
-        Introduce intro = introduceDao.getById(id);
-        if(intro!=null){
-            return Result.success(intro);
-        }
-        return Result.error(CodeMsg.PHOTO_ERROR);
-    }
-
-    @RequestMapping("/getAllIntroduce")
-    public Result<List<Introduce>> getAllIntroduce(){
-        List<Introduce> list = introduceDao.getAllIntroduce();
-        if(list.size()==0){
-            return Result.error(CodeMsg.PHOTO_ERROR);
-        }
-        return Result.success(list);
-    }
-
-
 }

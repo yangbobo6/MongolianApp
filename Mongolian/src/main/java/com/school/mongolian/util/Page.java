@@ -42,8 +42,11 @@ public class Page<T>{
             this.setContent(content);
             return;
         }
+        //页码数
         this.totalPage = this.total%this.pageSize == 0 ? this.total/this.pageSize : this.total/this.pageSize+1;
+        //当前页
         this.currentPage = this.currentPage > this.totalPage ? this.totalPage : this.currentPage;
+        //
         this.setContent(content.subList(this.pageSize*(this.currentPage-1),this.currentPage==this.totalPage?content.size():this.pageSize*this.currentPage));
     }
 }

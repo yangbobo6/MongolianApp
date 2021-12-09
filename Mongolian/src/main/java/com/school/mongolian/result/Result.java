@@ -6,7 +6,7 @@ public class Result<T> {
     private T data;
 
     private Result(T data){
-        this.code = 200;
+        this.code = 300;
         this.data = data;
     }
 
@@ -24,8 +24,6 @@ public class Result<T> {
     public static <T> Result<T> error(CodeMsg cmg){
         return new Result<T>(cmg);
     }
-
-
 
 
 

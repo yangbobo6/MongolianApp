@@ -20,7 +20,7 @@
     <properties>
         <java.version>11</java.version>
         <repackage.classifier/>
-        <docker.host>http://8.140.113.169:2375</docker.host>
+        <docker.host>https://8.140.113.169:2375</docker.host>
         <docker.maven.plugin.version>1.2.2</docker.maven.plugin.version>
     </properties>
 
@@ -153,6 +153,7 @@
                     <baseImage>java:8</baseImage>
                     <entryPoint>["java", "-jar","/${project.build.finalName}.jar"]
                     </entryPoint>
+                    <dockerCertPath>D:\environment\docker-ca</dockerCertPath>
                     <resources>
                         <resource>
                             <targetPath>/</targetPath>

@@ -44,6 +44,7 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
+    //设置cookie
     private void addCookie(HttpServletResponse response,String token,User user){
         Cookie cookie = new Cookie(COOKIE_NAME_TOKEN,token);
         cookie.setMaxAge((int) JwtUtil.EXPIRE_TIME);
@@ -52,6 +53,4 @@ public class UserServiceImpl implements UserService {
         cookie.getVersion();
         response.addCookie(cookie);
     }
-
-
 }

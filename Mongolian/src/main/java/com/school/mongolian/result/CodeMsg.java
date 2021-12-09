@@ -14,8 +14,11 @@ public class CodeMsg {
     //登录异常
     public static CodeMsg PASSWORD_WRONG = new CodeMsg(40001,"密码错误");
 
-    //获取图片板块
+    //获取谚语 / 每日一句 板块
     public static final CodeMsg PHOTO_ERROR = new CodeMsg(30001,"服务器返回错误");
+
+    public static final CodeMsg DAILY_SEN_List_ERROR = new CodeMsg(30002,"每日一句集合返回错误");
+    public static final CodeMsg DAILY_SEN_ERROR = new CodeMsg(30002,"每日一句返回错误");
 
 
     public int getCode() {
