@@ -25,7 +25,7 @@ import java.util.List;
 //r3bne66hw.hb-bkt.clouddn.com
 //服务器直传
 @RestController
-@RequestMapping("/qiniu")
+@RequestMapping("/folkway")
 public class QiniuController {
     //构造一个带指定Region对象的配置类
     Configuration cfg = new Configuration(Region.region1());
@@ -80,7 +80,7 @@ public class QiniuController {
         return Result.success("get success");
     }
 
-    @RequestMapping("/getPhoto")
+    @RequestMapping("/getPhoto1")
     public Result<QiNiuDto> getPhotos(){
         QiNiuDto qiNiuDto = new QiNiuDto();
         qiNiuDto.setName("PhotoUrl");
@@ -90,6 +90,26 @@ public class QiniuController {
         url.add("http://r3bne66hw.hb-bkt.clouddn.com/20211129151930.png");
         qiNiuDto.setQiNiuUrl(url);
         return Result.success(qiNiuDto);
+    }
+    @Autowired
+    IntroduceDao introduceDao;
+
+    @RequestMapping("/getPhoto/{id}")
+    public Result<Introduce> getPhoto(@PathVariable int id){
+        Introduce intro = introduceDao.getById(id);
+        if(intro!=null){
+            return Result.success(intro);
+        }
+        return Result.error(CodeMsg.PHOTO_ERROR);
+    }
+
+    @RequestMapping("/getAllIntroduce")
+    public Result<List<Introduce>> getAllIntroduce(){
+        List<Introduce> list = introduceDao.getAllIntroduce();
+        if(list.size()==0){
+            return Result.error(CodeMsg.PHOTO_ERROR);
+        }
+        return Result.success(list);
     }
 
 }

@@ -17,10 +17,7 @@ public class test {
         System.out.println(time2);
 
         int days = (int)(time - time2)/(1000*3600*24);
-
         System.out.println(days);
-
-
     }
     
     
