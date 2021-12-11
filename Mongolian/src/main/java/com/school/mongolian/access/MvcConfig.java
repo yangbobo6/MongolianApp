@@ -18,11 +18,14 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(new AccessInterceptor())
                 .addPathPatterns("/**")
                 .excludePathPatterns("/user/login/**")
+                .excludePathPatterns("/test/**")
                 .excludePathPatterns("/register/**")
                 .excludePathPatterns("/images/**")
                 .excludePathPatterns("/dailySen/**")
                 .excludePathPatterns("/folkway/**")
                 .excludePathPatterns("/video/**")
+                .excludePathPatterns("/word/**")
+                .excludePathPatterns("/text/**")
                 .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**","/swagger-ui.html#/**")
                 ;
     }

@@ -11,11 +11,11 @@ import com.school.mongolian.dto.QiNiuDto;
 import com.school.mongolian.po.Introduce;
 import com.school.mongolian.result.CodeMsg;
 import com.school.mongolian.result.Result;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -26,6 +26,7 @@ import java.util.List;
 //服务器直传
 @RestController
 @RequestMapping("/folkway")
+@Api(tags = "民俗")
 public class QiniuController {
     //构造一个带指定Region对象的配置类
     Configuration cfg = new Configuration(Region.region1());
@@ -80,19 +81,21 @@ public class QiniuController {
         return Result.success("get success");
     }
 
-    @RequestMapping("/getPhoto1")
-    public Result<QiNiuDto> getPhotos(){
-        QiNiuDto qiNiuDto = new QiNiuDto();
-        qiNiuDto.setName("PhotoUrl");
-        List<String> url = new ArrayList<>();
-        url.add("http://r3bne66hw.hb-bkt.clouddn.com/20211129151908.png");
-        url.add("http://r3bne66hw.hb-bkt.clouddn.com/20211129151909.png");
-        url.add("http://r3bne66hw.hb-bkt.clouddn.com/20211129151930.png");
-        qiNiuDto.setQiNiuUrl(url);
-        return Result.success(qiNiuDto);
-    }
+//    @RequestMapping("/getPhoto1")
+//    public Result<QiNiuDto> getPhotos(){
+//        QiNiuDto qiNiuDto = new QiNiuDto();
+//        qiNiuDto.setName("PhotoUrl");
+//        List<String> url = new ArrayList<>();
+//        url.add("http://r3bne66hw.hb-bkt.clouddn.com/20211129151908.png");
+//        url.add("http://r3bne66hw.hb-bkt.clouddn.com/20211129151909.png");
+//        url.add("http://r3bne66hw.hb-bkt.clouddn.com/20211129151930.png");
+//        qiNiuDto.setQiNiuUrl(url);
+//        return Result.success(qiNiuDto);
+//    }
+
     @Autowired
     IntroduceDao introduceDao;
+    public static final String prefixUrl = "http://r3bne66hw.hb-bkt.clouddn.com/";
 
     @RequestMapping("/getPhoto/{id}")
     public Result<Introduce> getPhoto(@PathVariable int id){
@@ -103,9 +106,23 @@ public class QiniuController {
         return Result.error(CodeMsg.PHOTO_ERROR);
     }
 
-    @RequestMapping("/getAllIntroduce")
+    //http://r3bne66hw.hb-bkt.clouddn.com/
+    @RequestMapping(value = "/getAllIntroduce",method = RequestMethod.GET)
+    @ApiOperation("民俗")
     public Result<List<Introduce>> getAllIntroduce(){
         List<Introduce> list = introduceDao.getAllIntroduce();
+        for (Introduce intro:list
+             ) {
+            intro.setFirstUrl(prefixUrl+intro.getFirstUrl());
+        }
+        for (Introduce intro:list
+        ) {
+            intro.setMainUrl(prefixUrl+intro.getMainUrl());
+        }
+        for (Introduce intro:list
+        ) {
+            intro.setSecondUrl(prefixUrl+intro.getSecondUrl());
+        }
         if(list.size()==0){
             return Result.error(CodeMsg.PHOTO_ERROR);
         }

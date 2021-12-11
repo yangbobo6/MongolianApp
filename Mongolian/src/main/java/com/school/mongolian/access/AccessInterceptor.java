@@ -32,7 +32,7 @@ public class AccessInterceptor implements HandlerInterceptor {
             response.setCharacterEncoding("UTF-8");
             response.setContentType("application/json; charset=utf-8");
             JSONObject res = new JSONObject();
-            res.put("code","300");
+            res.put("code","404");
             res.put("msg","token验证失败,请先登录");
             PrintWriter out = null ;
             out = response.getWriter();

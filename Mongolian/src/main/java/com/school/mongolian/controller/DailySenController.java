@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Random;
 
 @RestController
-@Api(tags = "民俗谚语")
+@Api(tags = "每日一句谚语")
 @RequestMapping("/dailySen/")
 public class DailySenController {
 
@@ -56,7 +56,7 @@ public class DailySenController {
     }
 
     //获取 每日一句 或者随机获取谚语
-    @ApiOperation(value = "民俗")
+    @ApiOperation(value = "每日一句")
     @RequestMapping(value = "/getDailySenType",method = RequestMethod.POST)
     public Result<List<DailySen>> getByIdDailySen1(@RequestParam int type){
         if(type==1){

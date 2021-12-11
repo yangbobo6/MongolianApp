@@ -5,8 +5,8 @@ import com.school.mongolian.po.Video;
 import com.school.mongolian.result.CodeMsg;
 import com.school.mongolian.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public class VideoController {
     @Autowired
     VideoDao videoDao;
 
-    @GetMapping("/getAllVideo")
+    @RequestMapping(value = "/getAllVideo", method = RequestMethod.POST)
     public Result<List<Video>> getAllVideo(){
         List<Video> allVideo = videoDao.getAllVideo();
         if(allVideo!=null){

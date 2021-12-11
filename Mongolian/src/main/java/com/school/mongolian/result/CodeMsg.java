@@ -24,6 +24,13 @@ public class CodeMsg {
     public static final CodeMsg VIDEO_ERROR = new CodeMsg(50000,"没有视频");
 
 
+    //获取单词板块
+    public static final CodeMsg WORD_ERROR = new CodeMsg(60000,"没有查询到单词");
+
+    //文本模块
+    public static final CodeMsg TEXT_ERROR = new CodeMsg(70000,"没有查询到文本");
+
+
     public int getCode() {
         return code;
     }
