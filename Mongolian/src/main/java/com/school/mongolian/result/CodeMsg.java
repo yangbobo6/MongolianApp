@@ -30,6 +30,10 @@ public class CodeMsg {
     //文本模块
     public static final CodeMsg TEXT_ERROR = new CodeMsg(70000,"没有查询到文本");
 
+    //测试错误
+    public static final CodeMsg TEST_ERROR = new CodeMsg(80000,"没有查询到测试文本");
+    public static final CodeMsg GRADE_ERROR = new CodeMsg(80001,"没到检测到名字");
+
 
     public int getCode() {
         return code;

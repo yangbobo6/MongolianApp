@@ -21,7 +21,7 @@ public class AccessInterceptor implements HandlerInterceptor {
         response.setHeader("Access-Control-Expose-Headers", "Token");
 
 
-        log.info("验证token前");
+        log.info("验证token前11");
         //验证token
         String token = request.getHeader("token");
         boolean result = JwtUtil.verify(token);
@@ -29,10 +29,11 @@ public class AccessInterceptor implements HandlerInterceptor {
             log.info("验证token成功");
             return true;
         }else{
+            log.info("验证token失败");
             response.setCharacterEncoding("UTF-8");
             response.setContentType("application/json; charset=utf-8");
             JSONObject res = new JSONObject();
-            res.put("code","404");
+            res.put("code","409");
             res.put("msg","token验证失败,请先登录");
             PrintWriter out = null ;
             out = response.getWriter();
