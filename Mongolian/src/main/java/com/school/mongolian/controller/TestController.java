@@ -50,4 +50,13 @@ public class TestController {
         }
         return Result.success(testList);
     }
+    @RequestMapping("/getAllList")
+    public Result<List<Test>> getAllList(){
+        List<Test> tests = testDao.getAllList();
+        if(tests.size()==0){
+            return Result.error(CodeMsg.TEST_ERROR);
+        }
+        return Result.success(tests);
+    }
+
 }

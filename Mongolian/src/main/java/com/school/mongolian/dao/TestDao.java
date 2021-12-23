@@ -17,4 +17,6 @@ public interface TestDao {
             "as a where type = #{type};")
     public List<Test> getByGrade(@Param("grade")int grade,@Param("type")int type);
 
+    List<Test> getAllList();
+
 }
