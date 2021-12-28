@@ -6,7 +6,7 @@ public class Result<T> {
     private T data;
 
     private Result(T data){
-        this.code = 300;
+        this.code = 200;
         this.data = data;
     }
 

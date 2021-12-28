@@ -8,6 +8,7 @@ import java.util.Date;
 //  https://blog.csdn.net/wdf521121/article/details/88861610
 public class TimeTest {
     public static void main(String[] args) throws ParseException {
+
         System.out.println(System.currentTimeMillis());
 
         //处理时间慢  慎用！！
@@ -15,6 +16,7 @@ public class TimeTest {
         System.out.println(Calendar.getInstance().getTimeInMillis());
 
         System.out.println(new Date().getTime());
+        System.out.println(new Date());
 
         System.out.println("-----------------------");
 

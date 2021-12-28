@@ -34,6 +34,9 @@ public class CodeMsg {
     public static final CodeMsg TEST_ERROR = new CodeMsg(80000,"没有查询到测试文本");
     public static final CodeMsg GRADE_ERROR = new CodeMsg(80001,"没到检测到名字");
 
+    //Wechat错误
+    public static final CodeMsg OutOfSchool = new CodeMsg(90001,"查询结果为空");
+
 
     public int getCode() {
         return code;

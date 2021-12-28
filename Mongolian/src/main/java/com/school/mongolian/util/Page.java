@@ -20,7 +20,7 @@ public class Page<T>{
     //总数居个数
     private int total;
 
-    //样本总数  总页数
+    //样本总数
     private List<T> content;
 
     public Page() {

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.school.mongolian.dao.wechatDao.OutOfDao">
+    <select id="findAll" resultType="com.school.mongolian.po.wechat.StudentInfo">
+        select * from wechat_student_info
+    </select>
+
+    <select id="findById" parameterType="int" resultType="com.school.mongolian.po.wechat.StudentInfo">
+        select * from wechat_student_info where id = #{id}
+    </select>
+</mapper>

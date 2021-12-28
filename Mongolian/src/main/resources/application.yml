@@ -1,10 +1,11 @@
 server:
   port: 8080
 #  ssl:
-#    key-store: classpath:tomcat.keystore
-#    key-password: 123456
-#    key-alias: tomcat
+#    key-store: classpath:server.keystore
+#    key-password: 12345678
+#    key-alias: server_cert
 #    key-store-type: JKS
+#    enabled: true
 
 
 spring:
@@ -23,6 +24,7 @@ mybatis:
     map-underscore-to-camel-case: true
     default-fetch-size: 100
     default-statement-timeout: 3000
+  mapper-locations: com/school/mongolian/dao/*.xml
 
 
 
