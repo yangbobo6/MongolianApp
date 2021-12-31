@@ -1,5 +1,6 @@
 package com.school.mongolian.controller;
 
+import com.school.mongolian.dao.DailySenDao;
 import com.school.mongolian.dao.WordDao;
 import com.school.mongolian.po.Word;
 import com.school.mongolian.result.CodeMsg;
@@ -18,6 +19,8 @@ public class WordController {
     public static final String prefixUrl = "http://r3whkaj8f.hn-bkt.clouddn.com/";
     @Autowired
     WordDao wordDao;
+    @Autowired
+    DailySenDao dailySenDao;
 
     //http://r3whkaj8f.hn-bkt.clouddn.com/
     @RequestMapping("/getAllWord")
@@ -41,5 +44,6 @@ public class WordController {
         }
         return Result.error(CodeMsg.WORD_ERROR);
     }
+
 
 }

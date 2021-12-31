@@ -10,4 +10,5 @@ public class Text {
     private String mongolian;
     private String textUrl;
     private String type;
+    private int collect;
 }

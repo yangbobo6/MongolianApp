@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.school.mongolian.dao.DailySenDao">
+    <update id="setCollect" parameterType="int">
+        update mongo_dailySen
+        set collect = #{collect}
+        where id = #{id}
+    </update>
+
+    <update id="setWordCollect" parameterType="int">
+        update mongo_word
+        set collect = #{collect}
+        where id = #{id}
+    </update>
+
+    <update id="setTestCollect" parameterType="int">
+        update mongo_test
+        set collect = #{collect}
+        where id = #{id}
+    </update>
+
+    <update id="setTextCollect" parameterType="int">
+        update mongo_text
+        set collect = #{collect}
+        where id = #{id}
+    </update>
+
+    <update id="setIntroduceCollect" parameterType="int">
+        update mongo_introduce
+        set collect = #{collect}
+        where id = #{id}
+    </update>
+</mapper>

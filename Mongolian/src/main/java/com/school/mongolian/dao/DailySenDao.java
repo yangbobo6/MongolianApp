@@ -5,6 +5,7 @@ import com.school.mongolian.po.Introduce;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -15,4 +16,16 @@ public interface DailySenDao {
 
     @Select("select * from mongo_dailySen")
     public List<DailySen> getAllDailySen();
+
+    @Select("select * from mongo_dailySen where collect = 1")
+    public List<DailySen> getCollectDailySen();
+
+    public boolean setCollect(int id,int collect);
+    public boolean setWordCollect(int id,int collect);
+    public boolean setTestCollect(int id,int collect);
+    public boolean setTextCollect(int id,int collect);
+    public boolean setIntroduceCollect(int id,int collect);
+
+
+
 }

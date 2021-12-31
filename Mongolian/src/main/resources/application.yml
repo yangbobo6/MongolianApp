@@ -26,5 +26,13 @@ mybatis:
     default-statement-timeout: 3000
   mapper-locations: com/school/mongolian/dao/*.xml
 
+fdfs:
+  so-timeout: 1501  # 读取超时时间
+  connect-timeout: 601  # 连接超时时间
+  thumb-image:  # 缩略图配置
+    width: 60
+    height: 60
+  tracker-list: 8.140.113.169:22122
+
 
 

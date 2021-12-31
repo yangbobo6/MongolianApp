@@ -26,6 +26,14 @@
 
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.github.tobato</groupId>
+            <artifactId>fastdfs-client</artifactId>
+            <version>1.27.2</version>
+        </dependency>
+
+
         <!--引入PageHelper分页插件 → PageHelper-->
         <dependency>
             <groupId>com.github.pagehelper</groupId>

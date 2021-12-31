@@ -19,6 +19,7 @@ public class CodeMsg {
     public static final CodeMsg DAILY_SEN_List_ERROR = new CodeMsg(30002,"每日一句集合返回错误");
     public static final CodeMsg DAILY_SEN_ERROR = new CodeMsg(30003,"每日一句返回错误");
     public static final CodeMsg DAILY_TYPE_ERROR = new CodeMsg(30004,"没有该类型");
+    public static final CodeMsg COLLECT_ERROR = new CodeMsg(30005,"收藏错误");
 
     //获取视频板块
     public static final CodeMsg VIDEO_ERROR = new CodeMsg(50000,"没有视频");

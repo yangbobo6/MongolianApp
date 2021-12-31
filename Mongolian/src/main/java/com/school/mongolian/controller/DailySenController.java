@@ -84,4 +84,58 @@ public class DailySenController {
         return Result.success(list);
     }
 
+    //添加收藏功能  0代表不收藏
+    @RequestMapping("/getCollectDailySen")
+    public Result<List<DailySen>> getCollectDailySen(){
+        List<DailySen> collectDailySen = dailySenDao.getCollectDailySen();
+        for ( DailySen dailySen:collectDailySen
+        ) {
+            dailySen.setPhotoUrl(prefixUrl+dailySen.getPhotoUrl());
+        }
+        return Result.success(collectDailySen);
+    }
+
+    //收藏功能的改变
+    @RequestMapping("/setCollect")
+    public Result<Boolean> setCollect(@RequestParam("id")int id,@RequestParam("collect")int collect){
+        //DailySen daoById = dailySenDao.getById(id);
+        //int collect = daoById.getCollect();
+        boolean b = dailySenDao.setCollect(id,collect);
+        return getBooleanResult(collect, b);
+    }
+
+    private Result<Boolean> getBooleanResult(@RequestParam("collect") int collect, boolean b) {
+        if(b&&collect==1){
+            return new Result<>("收藏成功",true);
+        }else if(b&&collect==0){
+            return new Result<>("取消收藏成功",false);
+        }else {
+            return Result.error(CodeMsg.COLLECT_ERROR);
+        }
+    }
+
+    @RequestMapping("/setWordCollect")
+    public Result<Boolean> setWordCollect(@RequestParam("id")int id,@RequestParam("collect")int collect){
+        boolean b = dailySenDao.setWordCollect(id,collect);
+        return getBooleanResult(collect, b);
+    }
+
+    @RequestMapping("/setTextCollect")
+    public Result<Boolean> setTextCollect(@RequestParam("id")int id,@RequestParam("collect")int collect){
+        boolean b = dailySenDao.setTextCollect(id,collect);
+        return getBooleanResult(collect, b);
+    }
+
+    @RequestMapping("/setTestCollect")
+    public Result<Boolean> setTestCollect(@RequestParam("id")int id,@RequestParam("collect")int collect){
+        boolean b = dailySenDao.setTestCollect(id, collect);
+        return getBooleanResult(collect, b);
+    }
+
+    @RequestMapping("/setIntroduceCollect")
+    public Result<Boolean> setIntroduceCollect(@RequestParam("id")int id,@RequestParam("collect")int collect){
+        boolean b = dailySenDao.setIntroduceCollect(id,collect);
+        return getBooleanResult(collect, b);
+    }
+
 }

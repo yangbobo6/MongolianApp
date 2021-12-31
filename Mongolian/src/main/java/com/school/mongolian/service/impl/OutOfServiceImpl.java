@@ -29,10 +29,18 @@ public class OutOfServiceImpl implements OutOfService {
     @Override
     public StudentInfo findById(int id) {
         StudentInfo std = outOfDao.findById(id);
+
+        //设置请求日期
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date(new Date().getTime()-24*60*60*1000);
         String format = sdf.format(date);
         std.setApplicationTime(format);
+
+
+        //设置回校日期
+
+        //设置出校日期
+
         if(std==null){
             return null;
         }

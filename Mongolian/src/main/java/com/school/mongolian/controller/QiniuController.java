@@ -1,4 +1,6 @@
 package com.school.mongolian.controller;
+
+
 import com.google.gson.Gson;
 import com.qiniu.common.QiniuException;
 import com.qiniu.http.Response;
@@ -21,6 +23,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+
 
 //r3bne66hw.hb-bkt.clouddn.com
 //服务器直传
@@ -130,3 +133,4 @@ public class QiniuController {
     }
 
 }
+

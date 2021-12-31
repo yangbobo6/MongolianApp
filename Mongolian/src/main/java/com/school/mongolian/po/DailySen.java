@@ -11,4 +11,5 @@ public class DailySen {
     private int id;
     private String name;
     private String photoUrl;
+    private int collect;
 }

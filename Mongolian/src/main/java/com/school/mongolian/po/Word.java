@@ -10,4 +10,5 @@ public class Word{
     private String chinese;
     private String mongolian;
     private String ciXing;
+    private int collect;
 }

@@ -9,6 +9,11 @@ public class Result<T> {
         this.code = 200;
         this.data = data;
     }
+    public Result(String msg,T data){
+        this.code = 200;
+        this.msg = msg;
+        this.data = data;
+    }
 
     public Result(CodeMsg cmg){
         if(cmg==null){

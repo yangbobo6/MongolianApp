@@ -10,5 +10,6 @@ public class Introduce {
     private String mainUrl;
     private String firstUrl;
     private String secondUrl;
+    private int collect;
 
 }

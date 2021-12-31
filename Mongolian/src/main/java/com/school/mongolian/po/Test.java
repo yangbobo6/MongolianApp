@@ -11,4 +11,5 @@ public class Test {
     private int collect;
     private String testPhoto;
     private int grade;
+
 }
