@@ -33,7 +33,16 @@ public class DailySenController {
     IntroduceDao introduceDao;
 
     @RequestMapping("/getByAllDailySen")
-    public Result<List<DailySen>> getAllDailySen(){
+    public Result<List<DailySen>> getAllDailySen(@RequestParam("collect")int collect){
+        if(collect==1){
+            List<DailySen> collectDailySen = dailySenDao.getCollectDailySen();
+            for ( DailySen dailySen:collectDailySen
+            ) {
+                dailySen.setPhotoUrl(prefixUrl+dailySen.getPhotoUrl());
+            }
+            return Result.success(collectDailySen);
+        }
+
         List<DailySen> allDailySen = dailySenDao.getAllDailySen();
         for ( DailySen dailySen:allDailySen
              ) {

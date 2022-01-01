@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface TextDao {
-    @Select("select * from mongo_text")
+    @Select("select * from mongo_text ")
     public List<Text> getAllText();
 
 }

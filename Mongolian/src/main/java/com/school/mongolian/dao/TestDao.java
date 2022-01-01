@@ -17,4 +17,6 @@ public interface TestDao {
             "as a where type = #{type};")
     public List<Test> getByGrade(@Param("grade")int grade,@Param("type")int type);
 
+    @Select("select * from mongo_test where collect = 1")
+    public List<Test> getTestCollect();
 }

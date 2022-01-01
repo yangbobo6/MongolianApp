@@ -112,8 +112,23 @@ public class QiniuController {
     //http://r3bne66hw.hb-bkt.clouddn.com/
     @RequestMapping(value = "/getAllIntroduce",method = RequestMethod.GET)
     @ApiOperation("民俗")
-    public Result<List<Introduce>> getAllIntroduce(){
+    public Result<List<Introduce>> getAllIntroduce(@RequestParam("collect")int collect){
         List<Introduce> list = introduceDao.getAllIntroduce();
+
+        if(collect==1){
+            List<Introduce> listCollect = new ArrayList<>();
+            for (Introduce introduce:list
+            ) {
+                if(introduce.getCollect()==1){
+                    introduce.setMainUrl(prefixUrl+introduce.getMainUrl());
+                    introduce.setFirstUrl(prefixUrl+introduce.getFirstUrl());
+                    introduce.setSecondUrl(prefixUrl+introduce.getSecondUrl());
+                    listCollect.add(introduce);
+                }
+            }
+            return Result.success(listCollect);
+        }
+
         for (Introduce intro:list
              ) {
             intro.setFirstUrl(prefixUrl+intro.getFirstUrl());
@@ -131,6 +146,25 @@ public class QiniuController {
         }
         return Result.success(list);
     }
+
+    //收藏
+    @RequestMapping("/getIntroCollect")
+    public Result<List<Introduce>> getIntroCollect(){
+        List<Introduce> allIntroduce = introduceDao.getAllIntroduce();
+        List<Introduce> list = new ArrayList<>();
+        for (Introduce introduce:allIntroduce
+             ) {
+            if(introduce.getCollect()==1){
+                introduce.setMainUrl(prefixUrl+introduce.getMainUrl());
+                introduce.setFirstUrl(prefixUrl+introduce.getFirstUrl());
+                introduce.setSecondUrl(prefixUrl+introduce.getSecondUrl());
+                list.add(introduce);
+            }
+        }
+        return Result.success(list);
+
+    }
+
 
 }
 
