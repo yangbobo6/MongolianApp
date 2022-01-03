@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.school.mongolian.dao.FolktaleDao">
+    <select id="getAllFolktale" resultType="com.school.mongolian.po.FolkTale">
+        select * from mongo_folktale
+    </select>
+</mapper>

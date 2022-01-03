@@ -31,4 +31,10 @@
         set collect = #{collect}
         where id = #{id}
     </update>
+
+    <update id="setFolktaleCollect" parameterType="int">
+        update mongo_folktale
+        set collect = #{collect}
+        where id = #{id}
+    </update>
 </mapper>

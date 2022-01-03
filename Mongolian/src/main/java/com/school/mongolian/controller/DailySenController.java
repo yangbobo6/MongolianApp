@@ -66,8 +66,17 @@ public class DailySenController {
 
     //获取 每日一句 或者随机获取谚语
     @ApiOperation(value = "每日一句")
-    @RequestMapping(value = "/getDailySenType",method = RequestMethod.POST)
-    public Result<List<DailySen>> getByIdDailySen1(@RequestParam int type){
+    @RequestMapping(value = "/getDailySenType",method = RequestMethod.GET)
+    public Result<List<DailySen>> getByIdDailySen1(@RequestParam("type") int type,@RequestParam("collect")int collect){
+        if(collect==1){
+            List<DailySen> collectDailySen = dailySenDao.getCollectDailySen();
+            for ( DailySen dailySen:collectDailySen
+            ) {
+                dailySen.setPhotoUrl(prefixUrl+dailySen.getPhotoUrl());
+            }
+            return Result.success(collectDailySen);
+        }
+
         if(type==1){
             DailySen dailySen = dailySenService.getDailySen();
             return getListResult(dailySen);
@@ -147,4 +156,9 @@ public class DailySenController {
         return getBooleanResult(collect, b);
     }
 
+    @RequestMapping("/setFolktaleCollect")
+    public Result<Boolean> setFolktaleCollect(@RequestParam("id")int id,@RequestParam("collect")int collect){
+        boolean b = dailySenDao.setFolktaleCollect(id,collect);
+        return getBooleanResult(collect, b);
+    }
 }

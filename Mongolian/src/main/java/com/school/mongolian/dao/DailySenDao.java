@@ -25,6 +25,7 @@ public interface DailySenDao {
     public boolean setTestCollect(int id,int collect);
     public boolean setTextCollect(int id,int collect);
     public boolean setIntroduceCollect(int id,int collect);
+    public boolean setFolktaleCollect(int id,int collect);
 
 
 

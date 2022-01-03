@@ -42,22 +42,20 @@ public class TestController {
     public Result<List<Test>> getByGrade(@RequestParam("grade")int grade,@RequestParam("type")int type,
                                          @RequestParam("collect")int collect){
         List<Test> testList = testDao.getByGrade(grade,type);
+        List<Test> tests = new ArrayList<>();
         if(collect==1){
             for (Test t:testList
                  ) {
-                if(t.getCollect()==0) {
-                    testList.remove(t);
+                if(t.getCollect()==1) {
+                    tests.add(t);
                 }
-//                }else {
-//                    System.out.println("123");
-//                    t.setTestPhoto(prefix+t.getTestPhoto());
-//                }
+
             }
-            for (Test t:testList
+            for (Test t:tests
                  ) {
                 t.setTestPhoto(prefix+t.getTestPhoto());
             }
-            return Result.success(testList);
+            return Result.success(tests);
         }
 
         for (Test test:testList

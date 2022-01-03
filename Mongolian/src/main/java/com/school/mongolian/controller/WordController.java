@@ -24,6 +24,7 @@ public class WordController {
     @Autowired
     DailySenDao dailySenDao;
 
+    //这个暂时没用
     //http://r3whkaj8f.hn-bkt.clouddn.com/
     @RequestMapping("/getAllWord")
     public Result<List<Word>> getAllWord(@RequestParam("collect")int collect){
@@ -50,10 +51,30 @@ public class WordController {
         }
         return Result.success(wordList);
     }
+
     // get.../？ciXing= {}
     @RequestMapping("/getWordByCiXing")
-    public Result<List<Word>> getWordByCiXing(@RequestParam("ciXing")String ciXing){
+    public Result<List<Word>> getWordByCiXing(@RequestParam("ciXing")String ciXing,@RequestParam("collect")int collect){
         List<Word> wordByCiXing = wordDao.getWordByCiXing(ciXing);
+        if(collect==1){
+            List<Word> collectText = new ArrayList<>();
+            for (Word word:wordByCiXing
+            ) {
+                word.setPhotoWordUrl(prefixUrl+word.getPhotoWordUrl());
+            }
+            if(wordByCiXing.size()==0){
+                return Result.error(CodeMsg.COLLECT_ERROR);
+            }
+            for (Word w: wordByCiXing
+            ) {
+                if(w.getCollect()==1){
+                    collectText.add(w);
+                }
+            }
+            return Result.success(collectText);
+        }
+
+
         for (Word word:wordByCiXing
              ) {
             word.setPhotoWordUrl(prefixUrl+word.getPhotoWordUrl());
