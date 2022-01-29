@@ -14,6 +14,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/video")
 public class VideoController {
+
+    //不知道为什么没有  前缀prefix  ？？？？  yangbovideo.lxmyt.com
     @Autowired
     VideoDao videoDao;
 

@@ -17,6 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("folktale")
 public class FolktaleController {
+    //yangbotj.lxmyt.com
     private static final String prefix = "http://";
 
     @Autowired

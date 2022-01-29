@@ -18,7 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/word")
 public class WordController {
-    public static final String prefixUrl = "http://r3whkaj8f.hn-bkt.clouddn.com/";
+    public static final String prefixUrl = "http://yangboword.lxmyt.com/";
     @Autowired
     WordDao wordDao;
     @Autowired

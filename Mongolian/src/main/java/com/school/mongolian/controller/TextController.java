@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/text")
 public class TextController {
 
-    public static final String prefix = "http://r3bne66hw.hb-bkt.clouddn.com/";
+    public static final String prefix = "http://yangbotj.lxmyt.com/";
     @Autowired
     TextDao textDao;
     @RequestMapping("/getAllText")

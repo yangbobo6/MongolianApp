@@ -98,7 +98,7 @@ public class QiniuController {
 
     @Autowired
     IntroduceDao introduceDao;
-    public static final String prefixUrl = "http://r3bne66hw.hb-bkt.clouddn.com/";
+    public static final String prefixUrl = "http://yangbotj.lxmyt.com/";
 
     @RequestMapping("/getPhoto/{id}")
     public Result<Introduce> getPhoto(@PathVariable int id){

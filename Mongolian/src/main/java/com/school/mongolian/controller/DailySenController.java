@@ -22,7 +22,7 @@ import java.util.Random;
 @RequestMapping("/dailySen/")
 public class DailySenController {
 
-    public static final String prefixUrl = "http://r3sr4g6ht.hb-bkt.clouddn.com/";
+    public static final String prefixUrl = "http://yangboproverb.lxmyt.com/";
 
     @Autowired
     DailySenDao dailySenDao;
