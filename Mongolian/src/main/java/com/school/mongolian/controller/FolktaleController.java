@@ -18,11 +18,12 @@ import java.util.List;
 @RequestMapping("folktale")
 public class FolktaleController {
     //yangbotj.lxmyt.com
-    private static final String prefix = "http://";
+    private static final String prefix = "http://yangbotj.lxmyt.com/";
 
     @Autowired
     private FolktaleDao folktaleDao;
 
+    //http://localhost:8080/folktale/getAllFolktale?collect=0
     @RequestMapping("/getAllFolktale")
     public Result<List<FolktaleDto>> getAllFolktale(@RequestParam("collect")int collect){
 

@@ -21,7 +21,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/testGrade")
 public class TestController {
-    public static final String prefix = "http://r3bne66hw.hb-bkt.clouddn.com/";
+    public static final String prefix = "http://yangbotj.lxmyt.com/";
+
+    /*
+      type 用3位数表示，初级用10x ，中级用 20x， 高级用30x
+      初级中，测试 100，一年级 101... 六年级106
+
+       typeName ，等级的名字，例如 测试，一年级.....六年级
+     */
     @Autowired
     TestDao testDao;
 
