@@ -32,6 +32,7 @@ public class DailySenController {
     @Autowired
     IntroduceDao introduceDao;
 
+    @ApiOperation("获取谚语")
     @RequestMapping("/getByAllDailySen")
     public Result<List<DailySen>> getAllDailySen(@RequestParam("collect")int collect){
         if(collect==1){
@@ -91,6 +92,8 @@ public class DailySenController {
             return Result.error(CodeMsg.DAILY_TYPE_ERROR);
         }
     }
+
+
 
     private Result<List<DailySen>> getListResult(DailySen dailySen) {
         dailySen.setPhotoUrl(prefixUrl+dailySen.getPhotoUrl());
