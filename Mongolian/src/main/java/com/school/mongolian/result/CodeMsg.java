@@ -20,6 +20,7 @@ public class CodeMsg {
     public static final CodeMsg DAILY_SEN_ERROR = new CodeMsg(30003,"每日一句返回错误");
     public static final CodeMsg DAILY_TYPE_ERROR = new CodeMsg(30004,"没有该类型");
     public static final CodeMsg COLLECT_ERROR = new CodeMsg(30005,"收藏错误");
+    public static final CodeMsg COLLECT_ERROR_VALUE = new CodeMsg(30006,"收藏值collect输入只能为0，1");
 
     //获取视频板块
     public static final CodeMsg VIDEO_ERROR = new CodeMsg(50000,"没有视频");

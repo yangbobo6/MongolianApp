@@ -32,6 +32,7 @@ public class DailySenController {
     @Autowired
     IntroduceDao introduceDao;
 
+    //没有用到
     @ApiOperation("获取谚语")
     @RequestMapping("/getByAllDailySen")
     public Result<List<DailySen>> getAllDailySen(@RequestParam("collect")int collect){
@@ -55,6 +56,7 @@ public class DailySenController {
         return Result.success(allDailySen);
     }
 
+    //没有用到
     @RequestMapping("/getDailySen/{id}")
     public Result<DailySen> getByIdDailySen(@PathVariable int id){
         DailySen dailySen = dailySenDao.getById(id);
@@ -65,10 +67,16 @@ public class DailySenController {
         return Result.success(dailySen);
     }
 
-    //获取 每日一句 或者随机获取谚语
+    /**
+     *
+     * @param type  1代表每日一句   2代表谚语
+     * @param collect  1代表查找收藏  0查找正常程序
+     * @return
+     */
     @ApiOperation(value = "每日一句")
     @RequestMapping(value = "/getDailySenType",method = RequestMethod.GET)
     public Result<List<DailySen>> getByIdDailySen1(@RequestParam("type") int type,@RequestParam("collect")int collect){
+        //每日一句   收藏  collect=1，type随意取
         if(collect==1){
             List<DailySen> collectDailySen = dailySenDao.getCollectDailySen();
             for ( DailySen dailySen:collectDailySen
@@ -77,20 +85,25 @@ public class DailySenController {
             }
             return Result.success(collectDailySen);
         }
-
-        if(type==1){
-            DailySen dailySen = dailySenService.getDailySen();
-            return getListResult(dailySen);
-        }else if(type==2) {
-            List<DailySen> allDailySen = dailySenDao.getAllDailySen();
-            for ( DailySen dailySen:allDailySen
-            ) {
-                dailySen.setPhotoUrl(prefixUrl+dailySen.getPhotoUrl());
+        else if(collect==0){
+            if(type==1){
+                //获取每日一句
+                DailySen dailySen = dailySenService.getDailySen();
+                return getListResult(dailySen);
+            }else if(type==2) {
+                //获取谚语 （所有的内容）
+                List<DailySen> allDailySen = dailySenDao.getAllDailySen();
+                for ( DailySen dailySen:allDailySen
+                ) {
+                    dailySen.setPhotoUrl(prefixUrl+dailySen.getPhotoUrl());
+                }
+                return Result.success(allDailySen);
+            }else {
+                return Result.error(CodeMsg.DAILY_TYPE_ERROR);
             }
-            return Result.success(allDailySen);
-        }else {
-            return Result.error(CodeMsg.DAILY_TYPE_ERROR);
         }
+
+       return Result.error(CodeMsg.COLLECT_ERROR_VALUE);
     }
 
 
