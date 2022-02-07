@@ -24,6 +24,7 @@ public class AccessInterceptor implements HandlerInterceptor {
         log.info("验证token前11");
         //验证token
         String token = request.getHeader("token");
+        log.info(token);
         boolean result = JwtUtil.verify(token);
         if (result) {
             log.info("验证token成功");

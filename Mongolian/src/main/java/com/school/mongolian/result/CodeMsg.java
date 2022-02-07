@@ -8,11 +8,17 @@ public class CodeMsg {
         this.code = code;
         this.msg = msg;
     }
+
+
     //软件更新提醒
     public static CodeMsg UPDATE_APP = new CodeMsg(97,"软件待更新");
 
     //登录异常
     public static CodeMsg PASSWORD_WRONG = new CodeMsg(40001,"密码错误");
+    public static CodeMsg USER_NULL = new CodeMsg(40002,"没有此用户");
+    public static CodeMsg REGISTER_ERROR = new CodeMsg(40002,"注册失败");
+    public static CodeMsg NAME_ERROR = new CodeMsg(40002,"该账号重复");
+    public static CodeMsg PHONE_ERROR = new CodeMsg(40002,"电话重复或为空");
 
     //获取谚语 / 每日一句 板块
     public static final CodeMsg PHOTO_ERROR = new CodeMsg(30001,"服务器返回错误");

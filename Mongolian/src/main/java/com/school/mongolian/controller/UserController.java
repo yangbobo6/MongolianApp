@@ -1,6 +1,7 @@
 package com.school.mongolian.controller;
 
 import com.school.mongolian.dto.LoginDto;
+import com.school.mongolian.dto.RegisterDto;
 import com.school.mongolian.po.User;
 import com.school.mongolian.result.CodeMsg;
 import com.school.mongolian.result.Result;
@@ -8,6 +9,7 @@ import com.school.mongolian.service.UserService;
 import com.school.mongolian.util.JwtUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.auth.In;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -34,15 +36,22 @@ public class UserController {
         }
     }
 
-
+    @ApiOperation("通过id获取用户")
     @RequestMapping("getUserById")
-    public Result<User> getById(HttpServletRequest request, HttpServletResponse response,@PathVariable("id")long id){
+    public Result<User> getById(HttpServletRequest request, HttpServletResponse response){
         String token = request.getHeader("token");
         int userId =Integer.parseInt(JwtUtil.getUserId(token));
         User user = userService.getUserById(userId);
         if(user==null){
-            return Result.error(CodeMsg.UPDATE_APP);
+            return Result.error(CodeMsg.USER_NULL);
         }
         return Result.success(user);
+    }
+
+    @ApiOperation("注册")
+    @RequestMapping(value = "/register",method = RequestMethod.POST)
+    public Result<String> register(@RequestBody RegisterDto registerDto){
+        Result register = userService.register(registerDto.getName(), registerDto.getPassword(), registerDto.getPhone());
+        return register;
     }
 }

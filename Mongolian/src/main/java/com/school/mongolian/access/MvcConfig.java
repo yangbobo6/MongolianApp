@@ -17,7 +17,7 @@ public class MvcConfig implements WebMvcConfigurer {
         log.info("过滤器生效");
         registry.addInterceptor(new AccessInterceptor())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/user/login/**")
+                .excludePathPatterns("/user/**")
                 .excludePathPatterns("/test/**")
                 .excludePathPatterns("/register/**")
                 .excludePathPatterns("/images/**")
