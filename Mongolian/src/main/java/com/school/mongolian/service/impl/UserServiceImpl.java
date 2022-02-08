@@ -35,14 +35,24 @@ public class UserServiceImpl implements UserService {
 
     //判断登录是否成功
     @Override
-    public Boolean login(HttpServletResponse response,String name, String password) {
-        User user = userDao.getByName(name);
+    public Boolean login(HttpServletResponse response,String phone, String password) {
+        User user = userDao.getByPhone(phone);
         if(!user.getPassword().equals(password)){
             return false;
         }
         //如果验证成功，则生成jwt登录
-        String token = JwtUtil.sign(user.getName(),user.getId()+"");
+        String token = JwtUtil.sign(user.getPhone(),user.getId()+"");
         log.info(token);
+
+//        if(token!=null){
+//            HashMap<String,Object> hm = new HashMap<String,Object>();
+//            hm.put("token",token);
+//            //hm.put("status",user.getRole());
+//            hm.put("phone",user.getPhone());
+//            response.addHeader("token",token);
+//            return Result.success();
+//        }
+
         //添加到cookie里面
         if(token!=null){
             addCookie(response,token,user);
@@ -66,16 +76,13 @@ public class UserServiceImpl implements UserService {
 
     //用户注册功能
     @Override
-    public Result register(String name, String password, String phone) {
+    public Result register(String password, String phone) {
 
-        if(userDao.getByName(name)!=null ){
-            return Result.error(CodeMsg.NAME_ERROR);
-        }
         if(userDao.getByPhone(phone)!=null && !phone.equals("")){
             return Result.error(CodeMsg.PHOTO_ERROR);
         }
 
-        Boolean insert = userDao.insert(name, password, phone);
+        Boolean insert = userDao.insert(password, phone);
         return Result.success("注册成功");
 
 

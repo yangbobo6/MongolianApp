@@ -28,7 +28,7 @@ public class UserController {
     @ApiOperation(value = "登录")
     @PostMapping("/login")
     public Result<String> login(HttpServletResponse response,@RequestBody LoginDto loginDto){
-        Boolean login = userService.login(response,loginDto.getName(), loginDto.getPassword());
+        Boolean login = userService.login(response,loginDto.getPhone(), loginDto.getPassword());
         if(login){
             return Result.success("登录成功");
         }else {
@@ -51,7 +51,7 @@ public class UserController {
     @ApiOperation("注册")
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     public Result<String> register(@RequestBody RegisterDto registerDto){
-        Result register = userService.register(registerDto.getName(), registerDto.getPassword(), registerDto.getPhone());
+        Result register = userService.register( registerDto.getPassword(), registerDto.getPhone());
         return register;
     }
 }
