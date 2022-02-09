@@ -6,15 +6,15 @@ import com.school.mongolian.po.Text;
 import com.school.mongolian.po.Word;
 import com.school.mongolian.result.CodeMsg;
 import com.school.mongolian.result.Result;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Api
 @RestController
 @RequestMapping("/word")
 public class WordController {
@@ -26,34 +26,35 @@ public class WordController {
 
     //这个暂时没用
     //http://r3whkaj8f.hn-bkt.clouddn.com/
-    @RequestMapping("/getAllWord")
-    public Result<List<Word>> getAllWord(@RequestParam("collect")int collect){
-        List<Word> wordList = wordDao.getAllWord();
-        if(collect==1){
-            List<Word> collectText = new ArrayList<>();
-            for (Word word:wordList
-            ) {
-                word.setPhotoWordUrl(prefixUrl+word.getPhotoWordUrl());
-            }
-            if(wordList.size()==0){
-                return Result.error(CodeMsg.COLLECT_ERROR);
-            }
-            for (Word w: wordList
-            ) {
-                if(w.getCollect()==1){
-                    collectText.add(w);
-                }
-            }
-            return Result.success(collectText);
-        }
-        if(wordList==null){
-            return Result.error(CodeMsg.WORD_ERROR);
-        }
-        return Result.success(wordList);
-    }
+//    @RequestMapping("/getAllWord")
+//    public Result<List<Word>> getAllWord(@RequestParam("collect")int collect){
+//        List<Word> wordList = wordDao.getAllWord();
+//        if(collect==1){
+//            List<Word> collectText = new ArrayList<>();
+//            for (Word word:wordList
+//            ) {
+//                word.setPhotoWordUrl(prefixUrl+word.getPhotoWordUrl());
+//            }
+//            if(wordList.size()==0){
+//                return Result.error(CodeMsg.COLLECT_ERROR);
+//            }
+//            for (Word w: wordList
+//            ) {
+//                if(w.getCollect()==1){
+//                    collectText.add(w);
+//                }
+//            }
+//            return Result.success(collectText);
+//        }
+//        if(wordList==null){
+//            return Result.error(CodeMsg.WORD_ERROR);
+//        }
+//        return Result.success(wordList);
+//    }
 
     // get.../？ciXing= {}
-    @RequestMapping("/getWordByCiXing")
+    @ApiOperation("通过词性获取单词")
+    @RequestMapping(value = "/getWordByCiXing",method = RequestMethod.GET)
     public Result<List<Word>> getWordByCiXing(@RequestParam("ciXing")String ciXing,@RequestParam("collect")int collect){
         List<Word> wordByCiXing = wordDao.getWordByCiXing(ciXing);
         if(collect==1){

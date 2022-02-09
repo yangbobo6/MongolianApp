@@ -81,12 +81,15 @@ public class UserServiceImpl implements UserService {
         if(userDao.getByPhone(phone)!=null && !phone.equals("")){
             return Result.error(CodeMsg.PHOTO_ERROR);
         }
+        String name = "蒙语用户";
+        name = name + "_"+phone.substring(6);
 
-        Boolean insert = userDao.insert(password, phone);
+        Boolean insert = userDao.insert(name,password, phone);
         return Result.success("注册成功");
-
-
     }
+
+    //注销登录
+
 
 
 

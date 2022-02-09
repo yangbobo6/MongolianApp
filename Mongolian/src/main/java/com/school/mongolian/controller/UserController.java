@@ -25,6 +25,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    //登录接口
     @ApiOperation(value = "登录")
     @PostMapping("/login")
     public Result<String> login(HttpServletResponse response,@RequestBody LoginDto loginDto){
@@ -48,10 +49,17 @@ public class UserController {
         return Result.success(user);
     }
 
+    //注册接口
     @ApiOperation("注册")
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     public Result<String> register(@RequestBody RegisterDto registerDto){
-        Result register = userService.register( registerDto.getPassword(), registerDto.getPhone());
+        Result register = userService.register(registerDto.getPassword(), registerDto.getPhone());
         return register;
+    }
+
+    //注销登录
+    @DeleteMapping(value = "/logout")
+    public Result logout(int id){
+        return null;
     }
 }
