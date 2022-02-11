@@ -15,6 +15,12 @@ public class Result<T> {
         this.data = data;
     }
 
+    public Result(int code, String msg, T data) {
+        this.code = code;
+        this.msg = msg;
+        this.data = data;
+    }
+
     public Result(CodeMsg cmg){
         if(cmg==null){
             return;
@@ -23,11 +29,17 @@ public class Result<T> {
         this.msg = cmg.getMsg();
     }
 
+    //返回值成功时
     public static <T> Result<T> success(T data){
         return new Result<T>(data);
     }
+    //返回失败时
     public static <T> Result<T> error(CodeMsg cmg){
         return new Result<T>(cmg);
+    }
+
+    public static <T> Result<T> error(T data){
+        return new Result<T>(data);
     }
 
 

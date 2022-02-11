@@ -15,8 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 @RestController
 @Api(tags = "登录验证")
@@ -28,10 +30,12 @@ public class UserController {
     //登录接口
     @ApiOperation(value = "登录")
     @PostMapping("/login")
-    public Result<String> login(HttpServletResponse response,@RequestBody LoginDto loginDto){
-        Boolean login = userService.login(response,loginDto.getPhone(), loginDto.getPassword());
-        if(login){
-            return Result.success("登录成功");
+    public Result<Map> login(HttpServletResponse response,
+                                @RequestParam("password") String password,
+                                @RequestParam("phone") String phone){
+        Result<Map> login = userService.login(response,phone, password);
+        if(login!=null){
+            return login;
         }else {
             return Result.error(CodeMsg.PASSWORD_WRONG);
         }
@@ -52,8 +56,8 @@ public class UserController {
     //注册接口
     @ApiOperation("注册")
     @RequestMapping(value = "/register",method = RequestMethod.POST)
-    public Result<String> register(@RequestBody RegisterDto registerDto){
-        Result register = userService.register(registerDto.getPassword(), registerDto.getPhone());
+    public Result<String> register(@RequestParam("password")String password,@RequestParam("phone") String phone){
+        Result register = userService.register(password, phone);
         return register;
     }
 
