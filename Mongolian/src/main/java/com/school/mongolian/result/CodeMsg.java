@@ -20,6 +20,7 @@ public class CodeMsg {
     public static CodeMsg REGISTER_ERROR = new CodeMsg(40004,"注册失败");
     public static CodeMsg NAME_ERROR = new CodeMsg(40005,"该账号重复");
     public static CodeMsg PHONE_ERROR = new CodeMsg(40002,"电话重复或为空");
+    public static CodeMsg UPDATE_INFO = new CodeMsg(40006,"修改信息失败");
 
     //获取谚语 / 每日一句 板块
     public static final CodeMsg PHOTO_ERROR = new CodeMsg(30001,"服务器返回错误");
@@ -45,6 +46,9 @@ public class CodeMsg {
 
     //民间故事错误
     public static final CodeMsg FOLKTALE_ERROR = new CodeMsg(100001,"没找到民间故事");
+
+    //发布帖子模块
+    public static final CodeMsg NULL_RELEASE = new CodeMsg(100002,"没有人发布");
 
     //Wechat错误
     public static final CodeMsg OutOfSchool = new CodeMsg(90001,"查询结果为空");

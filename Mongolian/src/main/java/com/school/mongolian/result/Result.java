@@ -42,6 +42,8 @@ public class Result<T> {
         return new Result<T>(data);
     }
 
+    public static final Result<Boolean> RELEASE_ERROR = new Result<Boolean>(11000,"发帖失败",true);
+
 
 
     public int getCode() {

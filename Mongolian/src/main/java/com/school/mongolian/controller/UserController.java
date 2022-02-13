@@ -1,5 +1,6 @@
 package com.school.mongolian.controller;
 
+import com.school.mongolian.dao.UserDao;
 import com.school.mongolian.dto.LoginDto;
 import com.school.mongolian.dto.RegisterDto;
 import com.school.mongolian.po.User;
@@ -26,6 +27,9 @@ import java.util.Map;
 public class UserController {
     @Autowired
     UserService userService;
+
+    @Autowired
+    UserDao userDao;
 
     //登录接口
     @ApiOperation(value = "登录")
@@ -65,5 +69,21 @@ public class UserController {
     @DeleteMapping(value = "/logout")
     public Result logout(int id){
         return null;
+    }
+
+
+    //完善个人信息
+    @ApiOperation("完善个人信息")
+    @RequestMapping(value = "/updateInfo",method = RequestMethod.POST)
+    public Result<String> updateInfo(HttpServletRequest request,
+                                      @RequestParam("name")String name,
+                                      @RequestParam("sex")String sex){
+        String token = request.getHeader("token");
+        int userId =Integer.parseInt(JwtUtil.getUserId(token));
+        Boolean b = userDao.updateInfo(name,sex,userId);
+        if(b){
+            return Result.success("修改成功");
+        }
+        return Result.error(CodeMsg.UPDATE_INFO);
     }
 }
