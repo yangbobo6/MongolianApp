@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.*;
 @Mapper
 public interface UserDao {
     @Select("select * from mongo_user where id = #{id}")
-    public User getById(@Param("id")long id);
+    public User getById(@Param("id")int id);
 
     //注册新用户
     @Insert("insert into mongo_user(name,password,phone) values(#{name},#{password},#{phone})")

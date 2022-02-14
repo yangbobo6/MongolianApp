@@ -10,7 +10,7 @@ import java.util.Map;
 
 
 public interface UserService {
-    public User getUserById(long id);
+    public User getUserById(int id);
 
     public Result<Map> login(HttpServletResponse response, String phone, String password);
 

@@ -24,15 +24,15 @@ public class AccessInterceptor implements HandlerInterceptor {
 
         log.info("验证token前11");
         //验证token
-        //String token = request.getHeader("token");
-        String token = null;
-        Cookie[] cookies = request.getCookies();
-        if(cookies != null && cookies.length > 0){
-            for (Cookie cookie : cookies){
-                if(cookie.getName().equals("token"))
-                token = cookie.getValue();
-            }
-        }
+        String token = request.getHeader("token");
+//        String token = null;
+//        Cookie[] cookies = request.getCookies();
+//        if(cookies != null && cookies.length > 0){
+//            for (Cookie cookie : cookies){
+//                if(cookie.getName().equals("token"))
+//                token = cookie.getValue();
+//            }
+//        }
 
         log.info(token);
         boolean result = JwtUtil.verify(token);

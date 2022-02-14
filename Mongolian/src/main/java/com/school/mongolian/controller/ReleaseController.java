@@ -42,6 +42,7 @@ public class ReleaseController {
     public Result<Boolean> insertInfo(HttpServletRequest request, @RequestParam("text")String text){
         String token = request.getHeader("token");
         int userId =Integer.parseInt(JwtUtil.getUserId(token));
+        System.out.println(userId);
         Date date = new Date();
         /*
         * name 值怎样取出来

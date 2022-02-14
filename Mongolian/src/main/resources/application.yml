@@ -15,6 +15,10 @@ spring:
     password: yb522653
     #password: 522653
     driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    host: 8.140.113.169
+    port: 6379
+    database: 0
 
 #mybatis
 mybatis:
@@ -33,6 +37,8 @@ fdfs:
     width: 60
     height: 60
   tracker-list: 8.140.113.169:22122
+
+
 
 
 

@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
     //通过id获取用户
     @Override
-    public User getUserById(long id) {
+    public User getUserById(int id) {
         log.info("进入service");
         User user = userDao.getById(id);
         log.info("退出service");

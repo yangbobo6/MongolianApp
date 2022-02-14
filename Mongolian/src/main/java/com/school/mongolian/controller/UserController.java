@@ -11,6 +11,7 @@ import com.school.mongolian.util.JwtUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.models.auth.In;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -20,7 +21,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
-
+@Slf4j
 @RestController
 @Api(tags = "登录验证")
 @RequestMapping("/user")
@@ -78,8 +79,11 @@ public class UserController {
     public Result<String> updateInfo(HttpServletRequest request,
                                       @RequestParam("name")String name,
                                       @RequestParam("sex")String sex){
+        //log.info("11111111111");
         String token = request.getHeader("token");
+        log.info(token);
         int userId =Integer.parseInt(JwtUtil.getUserId(token));
+        System.out.println(userId);
         Boolean b = userDao.updateInfo(name,sex,userId);
         if(b){
             return Result.success("修改成功");
