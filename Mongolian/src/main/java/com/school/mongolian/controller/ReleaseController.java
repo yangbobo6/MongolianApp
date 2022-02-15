@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -39,11 +42,15 @@ public class ReleaseController {
     //用户发送帖子
     @ApiOperation("发布帖子")
     @RequestMapping(value = "/insertInfo",method = RequestMethod.POST)
-    public Result<Boolean> insertInfo(HttpServletRequest request, @RequestParam("text")String text){
+    public Result<Boolean> insertInfo(HttpServletRequest request, @RequestParam("text")String text) throws ParseException {
         String token = request.getHeader("token");
         int userId =Integer.parseInt(JwtUtil.getUserId(token));
         System.out.println(userId);
-        Date date = new Date();
+
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String date1 = df.format(new Date());
+        Date date = df.parse(date1);
+
         /*
         * name 值怎样取出来
         * 1. 前端传送过来

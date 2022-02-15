@@ -17,7 +17,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
   redis:
     host: 8.140.113.169
-    port: 6379
+    port: 6279
     database: 0
 
 #mybatis

@@ -1,5 +1,6 @@
 package com.school.mongolian.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.school.mongolian.dao.UserDao;
 import com.school.mongolian.dto.LoginDto;
 import com.school.mongolian.po.User;
@@ -9,6 +10,7 @@ import com.school.mongolian.service.UserService;
 import com.school.mongolian.util.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Cookie;
@@ -25,6 +27,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserDao userDao;
+
+    @Autowired
+    RedisTemplate redisTemplate;
 
     //通过id获取用户
     @Override
@@ -55,6 +60,9 @@ public class UserServiceImpl implements UserService {
             hm.put("token",token);
             //hm.put("status",user.getRole());
             hm.put("user",user1);
+
+            redisTemplate.opsForValue().set("token",token);
+            redisTemplate.opsForValue().set("user", JSON.toJSONString(user));
             response.addHeader("token",token);
             return Result.success(hm);
         }

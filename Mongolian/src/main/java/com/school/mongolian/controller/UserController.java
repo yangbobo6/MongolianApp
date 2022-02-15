@@ -79,7 +79,6 @@ public class UserController {
     public Result<String> updateInfo(HttpServletRequest request,
                                       @RequestParam("name")String name,
                                       @RequestParam("sex")String sex){
-        //log.info("11111111111");
         String token = request.getHeader("token");
         log.info(token);
         int userId =Integer.parseInt(JwtUtil.getUserId(token));
