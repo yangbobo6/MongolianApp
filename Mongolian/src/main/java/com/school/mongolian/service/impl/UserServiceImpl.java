@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.school.mongolian.dao.UserDao;
 import com.school.mongolian.dto.LoginDto;
 import com.school.mongolian.po.User;
+import com.school.mongolian.redis.UserKey;
 import com.school.mongolian.result.CodeMsg;
 import com.school.mongolian.result.Result;
 import com.school.mongolian.service.UserService;
@@ -17,6 +18,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @Service
 @Slf4j
@@ -61,8 +63,14 @@ public class UserServiceImpl implements UserService {
             //hm.put("status",user.getRole());
             hm.put("user",user1);
 
-            redisTemplate.opsForValue().set("token",token);
-            redisTemplate.opsForValue().set("user", JSON.toJSONString(user));
+//            log.info(UserKey.token.getPrefix()+"----"+token);
+//            log.info(UserKey.userKey.getPrefix()+"----"+JSON.toJSONString(user));
+//            redisTemplate.opsForValue().set(UserKey.token.getPrefix(),token);
+//            redisTemplate.opsForValue().set(UserKey.userKey.getPrefix(), JSON.toJSONString(user));
+//            redisTemplate.expire("token",500, TimeUnit.MINUTES);
+//            redisTemplate.expire("user",5,TimeUnit.MINUTES);
+
+
             response.addHeader("token",token);
             return Result.success(hm);
         }

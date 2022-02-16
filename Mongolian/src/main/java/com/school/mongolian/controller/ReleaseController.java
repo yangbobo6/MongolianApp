@@ -47,9 +47,8 @@ public class ReleaseController {
         int userId =Integer.parseInt(JwtUtil.getUserId(token));
         System.out.println(userId);
 
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        String date1 = df.format(new Date());
-        Date date = df.parse(date1);
+        long date = new Date().getTime();
+
 
         /*
         * name 值怎样取出来

@@ -17,7 +17,7 @@ import java.util.List;
 @Mapper
 public interface ReleaseDao {
     @Insert("insert into mongo_release (userId,name,text,date) values(#{userId},#{name},#{text},#{date})")
-    public Boolean releaseInfo(@Param("userId")int userId,@Param("name")String name,@Param("text")String text,@Param("date") Date date);
+    public Boolean releaseInfo(@Param("userId")int userId,@Param("name")String name,@Param("text")String text,@Param("date") long date);
 
     @Select("select * from mongo_release")
     public List<Release> selectRelease();
